@@ -1,0 +1,38 @@
+<div>
+    <h1>Template-Driven Form</h1>
+    <form #form="ngForm"  (ngSubmit)="submitForm(form)">
+      <!-- Name Field -->
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required ngModel/>
+      </div>
+  
+      <!-- Email Field -->
+      <div>
+        <label for="email">Email:</label>
+        <input #emailRef="ngModel" type="email" id="email" name="email"  required email ngModel/>
+        <div *ngIf="emailRef.touched && emailRef.invalid" style="color:red">
+            <p *ngIf="emailRef.errors?.['required']">Email Id is Required</p>
+            <p *ngIf="emailRef.errors?.['email']">Email Id is not valid</p>
+
+        </div>
+      </div>
+  
+      <!-- Password Field -->
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"  minlength="6" required ngModel />
+      </div>
+  
+      <!-- Gender Field -->
+      <div>
+        <label>Gender:</label>
+        <input type="radio" name="gender"  value="male" required ngModel /> Male
+        <input type="radio" name="gender"  value="female" /> Female
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  </div>
+  

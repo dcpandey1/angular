@@ -1,0 +1,15 @@
+<div>
+    <h1 [ngStyle]="{'color':color}">Products</h1>
+    <h1>{{5+9 }}{{" Username "+11}}</h1>
+    <div *ngIf="products.length">
+        <div ng  *ngFor="let item of products">
+            <h5>Proudct Id : {{item.id}}</h5>
+            <h5 ngClass="red text">Proudct Name : {{item.name}}</h5>
+            <h5 [ngClass]="'text'">Proudct Price : {{item.price}}</h5>
+        </div>
+    </div>
+    <div *ngIf="showMsg">
+        <h1>No Products availablele</h1>
+    </div>
+
+</div>

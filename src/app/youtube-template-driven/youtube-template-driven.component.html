@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <h1>Tempalte Driven Form control</h1>
+    <form #userForm="ngForm" action="" novalidate (ngSubmit)="submitForm()">
+
+        
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input #nameRef="ngModel" [class.is-invalid]="nameRef.touched && nameRef.invalid" 
+            class="form-control" type="text" name="name" id="" [(ngModel)]="user.name" required>
+
+            <div *ngIf="nameRef.touched && nameRef.invalid">
+                <p class="text-danger" *ngIf="nameRef.errors?.['required']">Name is Required</p>
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input #emailRef="ngModel" email required class="form-control" type="email" name="email" id="" [(ngModel)]="user.email">
+            <div *ngIf="emailRef.touched && emailRef.invalid">
+                <p class="text-danger" *ngIf="emailRef.errors?.['email']">Enter valid email</p>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input class="form-control" type="number" name="phone" id="" [(ngModel)]="user.phone">
+        </div>
+        <div class="form-group">
+            <select required #topicRef="ngModel" [class.is-invalid]="topicRef.invalid && topicRef.touched" class="custom-select" name="topic" id="" [(ngModel)]="user.topic">
+                <option value="0">I am Intresested in</option>
+                <option *ngFor="let x of topics">{{x}}</option>
+            </select>
+        </div>
+
+        <button type="submit" [disabled]="userForm.form.invalid" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
